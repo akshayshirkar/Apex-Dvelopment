@@ -12,6 +12,11 @@ public class BatchUpdateOpportunity implements Database.Batchable<SObject> {
         update lstOpportunityToUpdate;
     }
     public void finish(Database.BatchableContext bc){
+        System.debug('AsyncApexJob is ==>'+bc.getJobId());
+        AsyncApexJob a = [Select id,status from AsyncApexJob where id =: bc.getJobId()];
+        if (a.status == 'Completed') {
+            System.debug('Job is completed');
+        }
         
     }
 }
