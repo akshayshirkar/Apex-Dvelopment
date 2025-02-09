@@ -21,4 +21,23 @@ public class MapExample {
         }
         Update lstUpdateContactWithNewTitle;
     }
+    
+    Public static void mappingParentToMultipleChildren(){
+        // Get All the Contacts 
+        Set<id> setAccountId = new Set<id>();
+        List<Contact> lstAllContacts = [Select id,Name,AccountId 
+                                        From Contact ];
+                
+        // Create the Account Map
+        Map<id,List<Contact>> lstMapWithAssociatedContacts = new Map<Id,List<Contact>>();
+        for(Contact ContactRef : lstAllContacts){
+            if(! lstMapWithAssociatedContacts.ContainsKey(ContactRef.AccountId)){
+                lstMapWithAssociatedContacts.put(ContactRef.AccountId,new List<Contact>());
+            }else{
+                lstMapWithAssociatedContacts.get(ContactRef.AccountId).add(ContactRef);
+            }
+        }
+        System.debug('lstMapWithAssociatedContacts ==>'+lstMapWithAssociatedContacts);
+                                                                           
+    }
 }
