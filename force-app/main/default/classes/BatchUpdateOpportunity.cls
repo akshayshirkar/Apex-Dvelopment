@@ -4,6 +4,7 @@ public class BatchUpdateOpportunity implements Database.Batchable<SObject> {
 
     }
     public void execute(Database.BatchableContext bc, list<Opportunity> Scope){
+        System.debug('Execute method is called');
         List<Opportunity> lstOpportunityToUpdate = new List<Opportunity>();
         for(Opportunity oppRef : Scope){
             oppRef.Amount = 0;
